@@ -14,11 +14,11 @@ contract SimpleStorage {
 
     mapping(string => int256) public nameToFavoriteNumber;
 
-    function store(int256 newFavoriteNumber) public  {
+    function store(int256 newFavoriteNumber) public virtual  {
         favoriteNumber = newFavoriteNumber;  
     }
 
-    function retrive() public view returns(int256) {
+    function retrieve() public view returns(int256) {
         return favoriteNumber;
     }
 
