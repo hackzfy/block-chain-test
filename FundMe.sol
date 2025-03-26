@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+error NotOwner();
 // execution cost (gas):
 // 377874: constant + immutable
 // 419883: none constant + none immutable
@@ -48,7 +49,11 @@ contract FundMe {
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Only owner can withdraw");
+        // require(msg.sender == owner, "Only owner can withdraw");
+        // use revert error is more gas efficiency than require.
+        if(msg.sender != owner) {
+            revert NotOwner();
+        }
         _;
     }
 }
